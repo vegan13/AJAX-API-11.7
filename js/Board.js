@@ -9,12 +9,40 @@ var board = {
 
 $('.create-column')
 	.click(function(){
-		board.createColumn(new Column(prompt('Wpisz nazwę kolumny')));
+        var columnName = prompt('Wpisz nazwę kolumny');
+        $.ajax({
+            url: baseUrl + '/column',
+            method: 'POST',
+            data: {
+                name: columnName
+            },
+            success: function(response){
+                var column = new Column(response.id, columnName);
+                board.createColumn(column);
+            }
+        });
 	});
 	
 function initSortable() {
     $('.card-list').sortable({
       connectWith: '.card-list',
-      placeholder: 'card-placeholder'
+      placeholder: 'card-placeholder',
+      receive: function(event, ui) {
+        var newColumnId = $(event.target).parent().attr('data-id'),
+            currentCardId = $(ui.item[0]).attr('data-id'),
+            currentCardName = $(ui.item[0]).find('.card-description').text();
+
+        $.ajax({
+            url: baseUrl + '/card/' + currentCardId,
+            method: 'PUT',
+            data: {
+                name: currentCardName,
+                bootcamp_kanban_column_id: newColumnId
+            },
+            success: function(response) {
+                
+            }
+        });
+      }
     }).disableSelection();
   }
