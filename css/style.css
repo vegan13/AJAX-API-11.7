@@ -1,70 +1,108 @@
-body {margin: 0;}
-* {box-sizing: border-box;}
+body {
+    
+}
+
+* {
+    box-sizing: border-box;
+}
 
 .ui-sortable {
-  min-height: 80px;
+    min-height: 80px;
 }
 .btn-delete {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 22px;
-  height: 22px;
-  border: 0;
-  background-color: rgba(0,0,0,0.4);
-  color: white;
-}
-/* BOARD */
-.board h1 {
-  margin-left: 8px;
-}
-.column-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
 }
 
+/* BOARD */
+.board h1 {
+    margin-left: 8px;
+    text-align: center;
+    font-size: 30px;
+}
+.column-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.board {
+    max-width: 950px;
+    margin: 0 auto;
+    background: lightblue;
+    height: auto;
+    padding: 5px 10px;
+    font-family: Arial;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    margin-top: 10px;
+}
 
 /* COLUMN */
 .column {
-  order: 1;
-  min-width: 300px;
-  min-height: 50vh;
-  background-color: lightgrey;
-  margin-left: 8px;
-  list-style: none;
-  position: relative;
+    order: 1;
+    min-width: 300px;
+    min-height: 50vh;
+    background-color: lightgrey;
+    margin-left: 8px;
+    list-style: none;
+    position: relative;
+    background: lime;
+    border: 1px solid red;
+    margin-bottom: 5px;
 }
 .column-add-card {
-  cursor: pointer;
-  text-decoration: underline;
-  margin: 5px 8px;
-  display: block;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 5px 8px;
+    display: block;
+}
+
+.column h2 {
+    text-align: center;
+    margin-bottom: 4px;
+    border-bottom: 2px solid green;
+    padding: 3px 0;
 }
 
 /* STYLE KARTY */
 .card {
-  box-sizing: border-box;
-  display: block;
-  height: 60px;
-  margin-bottom: 5px;
-  padding: 4px;
-  overflow: hidden;
-  position: relative;
+    box-sizing: border-box;
+    display: block;
+    height: 60px;
+    margin-bottom: 5px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    background: yellow;
 }
+
 .card-list {
-  list-style: none;
-  margin: 5px;
-  padding: 0px;
+    list-style: none;
+/*    margin: 5px;*/
+    padding: 0px;
 }
+
 .card-description {
-  margin: 2px 0;
+    margin: 2px 0;
 }
+
 .card-placeholder {
-  box-sizing: border-box;
-  display: block;
-  height: 60px;
-  margin-bottom: 5px;
-  border: 2px solid lightgrey;
-  background-color: lightblue;
+    box-sizing: border-box;
+    display: block;
+    height: 60px;
+    margin-bottom: 5px;
+    border: 2px solid lightgrey;
+    background-color: lightblue;
 }

@@ -1,13 +1,12 @@
 function Column(id, name) {
 	var self = this;
     this.id = id;
-	this.id = randomString();
 	this.name = name;
 	this.element = createColumn();
 
 	function createColumn() {
 		// TWORZENIE NOWYCH WĘZŁÓW
-		var column = $('<div class="column"></div>');
+		var column = $('<div class="column" data-id="' + self.id + '"></div>');
 		var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
 		var columnCardList = $('<ul class="card-list"></ul>');
 		var columnDelete = $('<button class="btn-delete">x</button>');
@@ -19,9 +18,23 @@ function Column(id, name) {
 		});
 		
 		columnAddCard.click(function(event) {
-			event.preventDefault();
-			self.createCard(new Card(prompt("Wpisz nazwę karty")));
-		});
+            var cardName = prompt("Wpisz nazwę karty");
+
+            event.preventDefault();
+            $.ajax({
+                url: baseUrl + '/card',
+                method: 'POST',
+                data: {
+                    name: cardName,
+                    bootcamp_kanban_column_id: self.id
+                },
+                success: function(response) {
+                    var card = new Card(response.id, cardName);
+                    self.createCard(card);
+                }
+            });
+        });
+
 			
 			// KONSTRUOWANIE ELEMENTU KOLUMNY
 		column.append(columnTitle)
